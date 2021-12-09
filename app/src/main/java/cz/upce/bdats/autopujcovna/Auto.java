@@ -2,19 +2,19 @@ package cz.upce.bdats.autopujcovna;
 
 import java.io.Serializable;
 
-public abstract class Auto implements Serializable {
+public abstract class Auto implements Serializable, Comparable<Auto> {
     // Atributy
     private final Typ typ;
     private final String spz;
-    private float stavKm = 0;
+    private int stavKm = 0;
     private int pocetVypujceni = 0;
 
     // Konstruktor
     public Auto(Typ typ, String spz) {
-        this(typ, spz, 0.0f, 0);
+        this(typ, spz, 0, 0);
     }
 
-    public Auto(Typ typ, String spz, float stavKm, int pocetVypujceni) {
+    public Auto(Typ typ, String spz, int stavKm, int pocetVypujceni) {
         this.typ = typ;
         this.spz = spz;
         this.stavKm = stavKm;
@@ -24,7 +24,12 @@ public abstract class Auto implements Serializable {
     // Metody
     @Override
     public String toString() {
-        return String.format("%s: %s; %.2f km, vypůjčeno %dx", typ, spz, stavKm, pocetVypujceni);
+        return String.format("%s: %s; %d km, vypůjčeno %dx", typ, spz, stavKm, pocetVypujceni);
+    }
+
+    @Override
+    public int compareTo(Auto o) {
+        return Integer.compare(this.stavKm, o.stavKm);
     }
 
     // Gettery
@@ -45,7 +50,7 @@ public abstract class Auto implements Serializable {
     }
 
     // Settery
-    public void setStavKm(float km) {
+    public void setStavKm(int km) {
         stavKm = km;
     }
 

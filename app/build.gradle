@@ -3,7 +3,7 @@
  *
  * This generated file contains a sample Java application project to get you started.
  * For more details take a look at the 'Building Java & JVM projects' chapter in the Gradle
- * User Manual available at https://docs.gradle.org/7.2/userguide/building_java_projects.html
+ * User Manual available at https://docs.gradle.org/7.3.1/userguide/building_java_projects.html
  */
 
 plugins {
@@ -14,7 +14,7 @@ plugins {
 
 javafx {
     version = "17"
-    sdk = "/Users/hejduk/.local/lib/javafx-sdk-17.0.2"
+    sdk = "/home/heymuch/.local/javafx-sdk-17.0.1"
     modules = [ 'javafx.graphics','javafx.controls','javafx.fxml' ]
 }
 

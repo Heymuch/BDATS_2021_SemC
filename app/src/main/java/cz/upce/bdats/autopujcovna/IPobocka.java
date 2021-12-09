@@ -14,6 +14,8 @@ public interface IPobocka extends Iterable<Auto> {
     // odebere auto z požadované pozice (první, poslední, předchůdce, následník, aktuální)
     Auto odeberAuto(String spz) throws Exception;
 
+    Auto odeberAutoSPrioritou() throws Exception;
+
     // vytvoří iterátor
     Iterator<Auto> iterator();
 

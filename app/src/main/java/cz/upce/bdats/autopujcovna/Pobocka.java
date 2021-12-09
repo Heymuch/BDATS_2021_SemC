@@ -1,10 +1,14 @@
 package cz.upce.bdats.autopujcovna;
 
 import java.util.Objects;
+import java.util.Spliterator;
+import java.util.stream.StreamSupport;
 import java.util.Iterator;
 
+import cz.upce.bdats.ds.IPriorityQueue;
 import cz.upce.bdats.ds.ITable;
 import cz.upce.bdats.ds.IterationType;
+import cz.upce.bdats.ds.PriorityQueue;
 import cz.upce.bdats.ds.Table;
 
 public class Pobocka implements IPobocka {
@@ -73,9 +77,32 @@ public class Pobocka implements IPobocka {
         }
     }
 
+    @Override
+    public Auto odeberAutoSPrioritou() throws PobockaException {
+        try {
+            Auto a = iterator().next();
+            return tabulka.remove(a.getSPZ());
+        } catch (Exception e) {
+            throw new PobockaException("Chyba při odebírání autas prioritou!", e);
+        }
+    }
+
     @Override // M104
     public Iterator<Auto> iterator() {
-        return tabulka.iterator(IterationType.BREADTH);
+        IPriorityQueue<Auto> pq = new PriorityQueue<>();
+        Iterator<Auto> it = tabulka.iterator(IterationType.BREADTH);
+
+        try {
+            while (it.hasNext()) {
+                Auto a = it.next();
+                pq.add(a);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return pq.iterator();
+        //return tabulka.iterator(IterationType.BREADTH);
     }
 
     @Override // M105

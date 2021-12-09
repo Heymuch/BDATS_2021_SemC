@@ -44,7 +44,7 @@ public class Persistence {
             String[] frags = s.split(";");
             Typ typ = Typ.valueOf(frags[0]);
             String spz = frags[1];
-            float stavKm = Float.valueOf(frags[2]);
+            int stavKm = Integer.valueOf(frags[2]);
             int pocetVypujceni = Integer.valueOf(frags[3]);
 
             switch (typ) {

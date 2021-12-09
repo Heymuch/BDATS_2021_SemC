@@ -25,8 +25,8 @@ public class Generator {
         return String.format("%d%c%d %04d", RNG.nextInt(10), 'A' + RNG.nextInt('Z' - 'A' + 1), RNG.nextInt(10), RNG.nextInt(1000));
     }
 
-    public static float genStavKm() {
-        return RNG.nextFloat() * 300000.0f;
+    public static int genStavKm() {
+        return (int) (RNG.nextFloat() * 300000.0f);
     }
 
     public static int genPocetVypujceni() {

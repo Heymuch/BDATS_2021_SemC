@@ -123,6 +123,7 @@ public class Autopujcovna implements IAutopujcovna {
             throw new AutopujcovnaException("Chyba při odebírání auta z aktualní pobočky!", e);
         }
     }
+
     // odebere auto z požadované pozice aktuální pobočky a vloží ho do seznamu výpůjček (první, poslední, následník, předchůdce, aktuální)
     public Auto vypujcAuto(String spz) throws AutopujcovnaException {
         try {
@@ -133,6 +134,18 @@ public class Autopujcovna implements IAutopujcovna {
 
         } catch (Exception e) {
             throw new AutopujcovnaException("Chyba při vypůjčování auta z pobočky!", e);
+        }
+    }
+
+    public Auto vypujcAutoSPrioritou() throws AutopujcovnaException {
+        try {
+            Auto a = pobocky.zpristupniAktualni().odeberAutoSPrioritou();
+            a.setPocetVypujceni(a.getPocetVypujceni() + 1);
+            vypujcene.vlozPosledni(a);
+            return a;
+
+        } catch (Exception e) {
+            throw new AutopujcovnaException("Chyba při vypůjčování auta s prioritou z pobočky!", e);
         }
     }
 

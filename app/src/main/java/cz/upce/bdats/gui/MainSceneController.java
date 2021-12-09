@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
 import java.net.URL;
+import java.time.Year;
 import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Objects;
@@ -75,6 +76,7 @@ public class MainSceneController implements Initializable {
             IPobocka p = autopujcovna.zpristupniPobocku(Pozice.AKTUALNI);
             gPobocky.getSelectionModel().select(p);
         } catch (Exception e) {
+            //e.printStackTrace();
         }
     }
 
@@ -85,9 +87,12 @@ public class MainSceneController implements Initializable {
             if (Objects.isNull(autopujcovna))
                 return;
             Iterator<Auto> it = autopujcovna.iterator(IteratorTyp.AUTOMOBILY);
-            while (it.hasNext())
-                gAutomobily.getItems().add(it.next());
+            while (it.hasNext()) {
+                Auto a = it.next();
+                gAutomobily.getItems().add(a);
+            }
         } catch (Exception e) {
+            //e.printStackTrace();
         }
     }
 
@@ -126,11 +131,7 @@ public class MainSceneController implements Initializable {
     @FXML
     void borrowAutomobil(ActionEvent event) {
         try {
-            String spz = handleSPZ();
-            if (Objects.isNull(spz) || spz.length() == 0)
-                return;
-
-            autopujcovna.vypujcAuto(spz);
+            autopujcovna.vypujcAutoSPrioritou();
             updateAutomobily();
             updateVypujcene();
         } catch (Exception e) {

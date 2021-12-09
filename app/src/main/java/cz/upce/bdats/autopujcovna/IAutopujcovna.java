@@ -24,6 +24,8 @@ public interface IAutopujcovna {
     // odebere auto z požadované pozice aktuální pobočky a vloží ho do seznamu výpůjček (první, poslední, následník, předchůdce, aktuální)
     Auto vypujcAuto(String spz) throws Exception;
 
+    Auto vypujcAutoSPrioritou() throws Exception;
+
     // odebere auto z požadované pozice výpůjček a vloží ho do seznamu aktuální pobočky (první, poslední, předchůdce, následník, aktuální)
     Auto vratAuto(Pozice pozice) throws Exception;
 
